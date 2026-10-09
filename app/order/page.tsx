@@ -167,18 +167,10 @@ function OrderContent() {
       return;
     }
 
-    // 🟢 CUSTOMER DETAILS SAVED FOR BILL MODAL
-    const customerDetails = {
-      name: userName,
-      phone: userPhone,
-      address: deliveryMode === 'pickup' ? 'Self Pickup (Store)' : userAddress,
-    };
-    localStorage.setItem('renuka_customer', JSON.stringify(customerDetails));
-
     const formattedItems = cartItems
       .map(
         (item, idx) =>
-          `${idx + 1}. *${item.name}* (${item.weight})%0A   Qty: ${item.quantity} × ₹${item.unitPrice} = *₹${
+          `${idx + 1}. *${item.name} (${item.weight})*%0A   Qty: ${item.quantity} × ₹${item.unitPrice} = *₹${
             item.quantity * item.unitPrice
           }*`
       )
@@ -210,7 +202,13 @@ function OrderContent() {
       note ? `%0A- *Note:* ${encodeURIComponent(note)}` : ''
     }%0A%0A*Order Items (${cartItems.length} Products, ${totalPacks} Packs):*%0A${formattedItems}%0A%0A*TOTAL AMOUNT: ₹${itemsTotal}*%0A%0APlease confirm order and payment options.`;
 
+    // WhatsApp open karein
     window.open(`https://wa.me/919725674462?text=${message}`, '_blank');
+
+    // Cart clear karke seedha Home page par redirect karein
+    localStorage.removeItem('renuka_cart');
+    setCart({});
+    router.push('/');
   };
 
   // Maps Preview Iframe Query
@@ -228,6 +226,7 @@ function OrderContent() {
     <div className="max-w-4xl mx-auto px-4 py-8">
       {/* Back Button */}
       <button
+        type="button"
         onClick={() => router.push('/menu')}
         className="inline-flex items-center gap-2 text-stone-400 hover:text-amber-400 text-xs font-bold mb-6 transition cursor-pointer"
       >
@@ -258,6 +257,7 @@ function OrderContent() {
               </div>
               <p className="text-stone-400 text-xs font-medium">Aapka cart khali hai.</p>
               <button
+                type="button"
                 onClick={() => router.push('/menu')}
                 className="inline-block text-xs font-bold text-amber-400 hover:underline cursor-pointer"
               >
@@ -293,9 +293,10 @@ function OrderContent() {
                     </div>
 
                     <button
+                      type="button"
                       onClick={() => handleRemoveItem(item.key)}
                       title="Remove Item"
-                      className="text-stone-500 hover:text-red-400 p-1.5 hover:bg-red-500/10 rounded-lg transition"
+                      className="text-stone-500 hover:text-red-400 p-1.5 hover:bg-red-500/10 rounded-lg transition cursor-pointer"
                     >
                       <Trash2 size={14} />
                     </button>
@@ -306,7 +307,7 @@ function OrderContent() {
                       <button
                         type="button"
                         onClick={() => handleDecreaseQuantity(item.key)}
-                        className="p-1 text-stone-400 hover:text-amber-400 hover:bg-stone-900 rounded transition active:scale-95"
+                        className="p-1 text-stone-400 hover:text-amber-400 hover:bg-stone-900 rounded transition active:scale-95 cursor-pointer"
                       >
                         <Minus size={12} />
                       </button>
@@ -316,7 +317,7 @@ function OrderContent() {
                       <button
                         type="button"
                         onClick={() => handleIncreaseQuantity(item.key)}
-                        className="p-1 text-stone-400 hover:text-amber-400 hover:bg-stone-900 rounded transition active:scale-95"
+                        className="p-1 text-stone-400 hover:text-amber-400 hover:bg-stone-900 rounded transition active:scale-95 cursor-pointer"
                       >
                         <Plus size={12} />
                       </button>
