@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 import './globals.css';
-import WhatsAppBillModal from '@/components/WhatsAppBillModal';
 
 export const metadata: Metadata = {
   title: 'Renuka-Namakeen',
@@ -22,8 +21,6 @@ export default function RootLayout({
       </head>
       <body>
         {children}
-        {/* Global Modal - Detects WhatsApp Redirect Automatically */}
-        <WhatsAppBillModal />
       </body>
     </html>
   );
