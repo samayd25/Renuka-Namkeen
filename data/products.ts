@@ -363,7 +363,7 @@ export const products: Product[] = [
     description: 'Traditional Gujarati sweet stuffed with rich mawa, dry fruits, and aromatic cardamom, deep-fried in pure ghee to golden perfection.',
     ingredients: 'Fine Flour (Maida), Mawa (Khoya), Sugar, Pure Ghee, Cardamom, Almonds, Pistachios, Cashews',
     shelfLife: '10-15 Days',
-    videoUrl: '/videos/mawa-ghughra.mp4',
+    videoUrl: '/videos/Mawa Ghughra.mp4',
     weights: ['250g', '500g', '1 kg'],
   },
   
