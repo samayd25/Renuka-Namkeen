@@ -71,7 +71,7 @@ export default function AIChatbot() {
         );
       });
 
-      // 2. Disambiguation logic: If multiple items match (e.g. user just typed "chakli" or "chivda")
+      // 2. Disambiguation logic: If multiple items match
       if (matchingProducts.length > 1) {
         const itemsList = matchingProducts
           .map((p) => `• ${p.name} - ₹${p.price}/${p.unit}`)
@@ -81,7 +81,7 @@ export default function AIChatbot() {
       // 3. Exact Single Match Found
       else if (matchingProducts.length === 1) {
         const matchedProduct = matchingProducts[0];
-        botReply = `🫓 **${matchedProduct.name}**\n• Category: ${matchedProduct.category}\n• Price: ₹${matchedProduct.price} / ${matchedProduct.unit}\n\nPure homemade & fresh! Order karne ke liye WhatsApp par contact karein: +91 9725674462.`;
+        botReply = `🫓 **${matchedProduct.name}**\nCategory: ${matchedProduct.category}\nPrice: ₹${matchedProduct.price} / ${matchedProduct.unit}\n\nPure homemade & fresh! Order karne ke liye WhatsApp par contact karein: +91 9725674462.`;
       } 
       // 4. General Queries (Special / Rate List / Delivery)
       else if (
@@ -107,9 +107,9 @@ export default function AIChatbot() {
         query.includes('address') ||
         query.includes('location')
       ) {
-        botReply = `🚚 **Delivery & Location:**\n• Address: Tarsali, Vadodara\n• Fresh Home Delivery available in Vadodara!`;
+        botReply = `🚚 **Delivery & Location:**\nAddress: Tarsali, Vadodara\nFresh Home Delivery available in Vadodara!`;
       } 
-      // 5. Fallback Response (For items outside the catalog)
+      // 5. Fallback Response
       else {
         botReply = `Mafi chahte hain, yeh item hamare menu list me available nahi hai.\n\nAap iski jankari ke liye direct **Jyoti P. Deshpande (+91 9725674462)** se contact karke pooch sakte hain!`;
       }
@@ -119,7 +119,7 @@ export default function AIChatbot() {
   };
 
   return (
-    <div className="fixed bottom-5 right-5 z-50 font-sans">
+    <div className="fixed bottom-20 sm:bottom-5 right-5 z-50 font-sans">
       {!isChatOpen ? (
         <button
           onClick={() => setIsChatOpen(true)}
